@@ -11,6 +11,7 @@ def f(x):
 
 def f_(x):
 	# Deriverte av funksjonen
+	# 5x^4-4x^3-6x
 	return 5*math.pow(x,4)-4*math.pow(x,3)-6*x
 
 def newrap(): # Newton Raphsons metode
@@ -33,28 +34,23 @@ def newrap(): # Newton Raphsons metode
 			tall = side2 # Setter Xn til svaret
 
 
-def maksverdi():
-	#finner først topppunkt og bunnpunkt
-	#der f'(x) == 0 er det ett stasjonært punkt
-	lavestlok_old = 20
-	cnt=0
-	df = [-1,2]
-	dfstart = df[0]*1000
-	dfslutt = df[1]*1000
-	for x in range(dfstart,dfslutt):
-		x = x/1000
-		derivert = f_(x)
+def maksverdi(start_v,slutt_v):
+	# 5x^4-4x^3-6x = 5x^2(x-1.4065)(x-0)
+	# X = 1.4065 og X = 0 er stasjonære punkter
+	# Finner først y-verdi av de stasjonære punktene
+	minmaksarray = []
+	punkt_a = [0,14065,start_v,slutt_v]
+	y0 = f(0)
+	y1 = f(1.4065)
+	minmaksarray.append(y0)
+	minmaksarray.append(y1)
+	minmaksarray.append(f(start_v))
+	minmaksarray.append(f(slutt_v))
+	maxval = max(minmaksarray)
+	print('Globalt maks i: X='+str(punkt_a[minmaksarray.index(maxval)])+' , Y='+str(maxval))
+	minval = min(minmaksarray)
+	print('Globalt min i: X='+str(punkt_a[minmaksarray.index(minval)])+' , Y='+str(minval))
 
-
-		# print(derivert)
-		# print(abs(derivert_r))
-		if  derivert == 0:
-			print('stasj.punkt i :'+str(x))
-
-	#punkt i -1
-	print('f(-1) = '+str(f(df[0])))
-	#punkt i 2
-	print('f(2) = '+str(f(df[1])))
 
 # Graf
 x = np.linspace(-1,2,30)
@@ -65,31 +61,10 @@ plt.plot(x,y2,'r--')
 # plt.show()
 
 print('Oppgave 1 b)')
+print()
 newrap()
 # input("Trykk enter for neste oppgave...")
+print()
 print('Oppgave 1 c)')
-maksverdi()
-
-# deriver(2,[2,0,-5])
-
-
-# print(newtonsqr(256,10))
-
-# print(scipy.optimize.newton())
-
-def test():
-		derivert_r = abs(round(f_(x),4))
-		lavestlok = derivert_r
-		if lavestlok <= lavestlok_old:
-			lavestlok_old = lavestlok
-			cnt = 0
-			# print(synker)
-			# print(lavestlok)
-		elif cnt != 5:
-			cnt = cnt + 1
-			# print(cnt)
-			if cnt == 2:
-				cnt = 5
-				stasj_punkt = x-0.002
-				print('Stasjonert punkt i x='+str(stasj_punkt))
-				print('Med y verdi: ' + str(f(stasj_punkt)))
+print()
+maksverdi(-1,2)

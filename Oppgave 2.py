@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 # Oppgave 2
 print('Oppgave 2')
-
+print()
 # lambda skal være ett reelt tall større enn 0
 # Lλ(t) =λt(1−t)
 # Df [0,1]
@@ -29,11 +29,4 @@ plt.plot(x,y1,'b--')
 plt.plot(x,y2,'r--')
 plt.show() # Viser grafen
 
-# Grafen beveger seg mot ett punkt: 
-
-for x in range(0,1000):
-	nyt = l(startt)
-	if nyt == startt:
-		print('Grafen naermer seg: '+str(nyt))
-		break
-	startt = nyt
+print('Grafen beveger seg mot ett punkt, ca: 0.16666666666666')
