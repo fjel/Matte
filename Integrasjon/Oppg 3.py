@@ -26,18 +26,14 @@ def areal2():
     deltax = intervall/delintervaller
     i = 0
     x = a
-    s = 0
-    while x <= intervall:
+    while x < b:
         i = i + (f(x)*deltax)
         x = x + deltax
     return i
 
 
 def f(x):
-    #return (3*(x*x))-3
-    return ((x*x)-(4*x)+3)
-    #return (x*x*x)+(6*(x*x))-(3*x)+1
-    #return (2*x)+3
+    return (1/(x*x))
 a = 1
-b = 3
+b = math.inf
 print(areal2())
